@@ -1,6 +1,10 @@
-import com.ibm.jvm.dtfjview.tools.utils.FileUtils;
 
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,15 +24,18 @@ public class Script {
            valor = ""+i;
            gravadorArquivo.println(valor);
 
-           if (i % 100000 ==0){
+           if (i % 100000 ==0 && i != 0){
                System.out.println(valor);
                arquivo.flush();
-               FileWriter arquivoTemp = new FileWriter("arquivo" + i/100000 +".txt");
+               File arquivoTemp = new File("arquivo" + i/100000 +".txt");
                PrintWriter gravadorTemp = new PrintWriter(arquivoTemp);
-               File copiador = new File("/home/basis/Documentos/Referencia/SGE/Atividade SO/arquivo.txt");
+               FileInputStream copiador = new FileInputStream("./arquivo.txt");
+               FileOutputStream recebedor = new FileOutputStream(arquivoTemp);
+               int linha;
 
-               gravadorTemp.println(valor);
-               arquivoTemp.close();
+               while ((linha = copiador.read()) != -1) {
+                   recebedor.write(linha);
+               }
 
            }
         }
