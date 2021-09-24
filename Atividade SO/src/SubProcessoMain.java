@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class SubProcessoMain {
 
@@ -15,6 +18,7 @@ public class SubProcessoMain {
 
             FileWriter arquivo = new FileWriter("arquivo.txt");
             PrintWriter gravadorArquivo = new PrintWriter(arquivo);
+            Path caminhoOriginal = Paths.get("./arquivo.txt");
 
             for (int i = 0; i <= numero; i++){
 
@@ -22,26 +26,14 @@ public class SubProcessoMain {
                 gravadorArquivo.println(valor);
                 String caminho = "";
 
-                if (i % 100000 ==0){
+                if (i % 100000 ==0 && i != 0){
                     System.out.println(valor);
-                    arquivo.flush();
                     caminho = "arquivo" + i/100000 +".txt";
-                    FileWriter arquivoTemp = new FileWriter(caminho);
-                    arquivo.close();
-                    String[] b = new String[] {"bash", "-c", "cp -R \"" + "arquivo.txt" + "/\"* \"" + "./" + caminho + "/\""};
-                    Runtime.getRuntime().exec(b);
-
-//                    PrintWriter gravadorTemp = new PrintWriter(arquivoTemp);
-//                    File copiador = new File("/home/basis/Documentos/Referencia/SGE/Atividade SO/arquivo.txt");
-//
-//                    gravadorTemp.println(valor);
-//                    arquivoTemp.close();
-
-
+                    arquivo.flush();
+                    Path caminhoCopia = Paths.get("./" + caminho);
+                    Files.copy(caminhoOriginal,caminhoCopia);
                 }
             }
-
-
             arquivo.close();
             System.out.println(SubProcesso.execCommand("cp ./arquivo.txt ~/Downloads"));
 

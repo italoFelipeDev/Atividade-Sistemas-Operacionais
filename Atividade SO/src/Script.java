@@ -1,4 +1,3 @@
-import com.ibm.jvm.dtfjview.tools.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileWriter;
