@@ -1,4 +1,5 @@
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class Script {
         FileWriter arquivo = new FileWriter("arquivo.txt");
         PrintWriter gravadorArquivo = new PrintWriter(arquivo);
         Path caminhoOriginal = Paths.get("./arquivo.txt");
+        Long tempoInicio = System.currentTimeMillis();
 
         for (int i = 0; i <= numero; i++){
 
@@ -36,5 +38,7 @@ public class Script {
         System.out.println(SubProcesso.execCommand("cp ./arquivo.txt ~/Downloads"));
 
         System.out.println("Arquvio criado");
+        long tempoFinal = System.currentTimeMillis();
+        System.out.println("O tempo de execução foi:" + (tempoFinal-tempoInicio));
     }
 }
