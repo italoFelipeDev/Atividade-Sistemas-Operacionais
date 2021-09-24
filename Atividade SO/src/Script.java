@@ -23,12 +23,12 @@ public class Script {
            if (i % 100000 ==0){
                System.out.println(valor);
                arquivo.flush();
-               FileWriter arquivoTemp = new FileWriter("arquivo" + i/100000 +".txt");
-               PrintWriter gravadorTemp = new PrintWriter(arquivoTemp);
+//               FileWriter arquivoTemp = new FileWriter("arquivo" + i/100000 +".txt");
+//               PrintWriter gravadorTemp = new PrintWriter(arquivoTemp);
                File copiador = new File("/home/basis/Documentos/Referencia/SGE/Atividade SO/arquivo.txt");
 
-               gravadorTemp.println(valor);
-               arquivoTemp.close();
+//               gravadorTemp.println(valor);
+//               arquivoTemp.close();
 
            }
         }
